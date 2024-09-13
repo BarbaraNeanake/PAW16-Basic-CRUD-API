@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(morgan("dev"));
+app.use(express.json());
 
 // CORS
 app.use(cors());
@@ -26,9 +27,9 @@ if (!process.env.MONGO_URI) {
 }
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("Succesfully connected to MongoDB");
+    console.log("Succesfully connected to Database!");
   }).catch((err) => {
-    console.log("Failed to connect to MongoDB");
+    console.log("Failed to connect to Database!");
     console.log(err);
   });
 
@@ -37,8 +38,9 @@ app.get("/", (req, res) => {
   res.send("Hello from PAW Backend Service!");
 });
 app.use("/user", require("./src/routes/UserRoutes"));
+app.use("/api/books", require("./src/routes/BookRoutes"));
 
-// APP START
+// APP START  
 app.listen(5000, () => {
   console.log("Server is running on http://localhost:5000");
 });
