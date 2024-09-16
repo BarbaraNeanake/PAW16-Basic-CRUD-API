@@ -23,18 +23,18 @@ const getBooks = async (req, res) => {
     sortBy[sort[0]] = sort[1] ? sort[1] : "asc";
 
     const query = {
-        title: { $regex: search, $options: "i" }
+      title: { $regex: search, $options: "i" }
     };
   
     if (category) {
-        query.category = {
-            $elemMatch: { $regex: new RegExp(category[0], "i") }
-        };
-    };
+      query.category = {
+        $elemMatch: { $regex: new RegExp(category[0], "i") }
+      };
+    }
 
     if (year) {
-        query.year = year;
-    };
+      query.year = year;
+    }
 
     const books = await Book.find(query)
       .sort(sortBy)
@@ -75,7 +75,81 @@ const createBook = async (req, res) => {
   }
 };
 
+// Update the category of a book by ID
+const updateBookCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { category } = req.body;
+
+    if (!id || !category) {
+      return res.status(400).json({ success: false, message: 'Book ID and category are required' });
+    }
+
+    const updatedBook = await Book.findByIdAndUpdate(
+      id,
+      { $set: { category } },
+      { new: true }
+    );
+
+    if (!updatedBook) {
+      return res.status(404).json({ success: false, message: 'Book not found' });
+    }
+
+    res.status(200).json({ success: true, message: 'Book category updated successfully', book: updatedBook });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server Error', error });
+  }
+};
+
+// Get a book by ID
+const getBookById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({ success: false, message: 'Book ID is required' });
+    }
+
+    const book = await Book.findById(id);
+
+    if (!book) {
+      return res.status(404).json({ success: false, message: 'Book not found' });
+    }
+
+    res.status(200).json({ success: true, book });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server Error', error });
+  }
+};
+
+// Delete a book by ID
+const deleteBookById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({ success: false, message: 'Book ID is required' });
+    }
+
+    const deletedBook = await Book.findByIdAndDelete(id);
+
+    if (!deletedBook) {
+      return res.status(404).json({ success: false, message: 'Book not found' });
+    }
+
+    res.status(200).json({ success: true, message: 'Book deleted successfully' });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server Error', error });
+  }
+};
+
 module.exports = {
   getBooks,
-  createBook
+  createBook,
+  updateBookCategory,
+  getBookById,
+  deleteBookById
 };
