@@ -6,12 +6,13 @@ const getBooks = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const search = req.query.search || "";
+    const year = parseInt(req.query.year) || null;
 
-    let sort = req.query.sort || "rating";
+    let sort = req.query.sort || "title";
     let category = req.query.category || "All";
 
     if (category === "All") {
-      category = []; // No specific category filter
+      category = null;
     } else {
       category = req.query.category.split(",");
     }
@@ -21,17 +22,26 @@ const getBooks = async (req, res) => {
     let sortBy = {};
     sortBy[sort[0]] = sort[1] ? sort[1] : "asc";
 
-    const books = await Book.find({ title: { $regex: search, $options: "i" } })
-      .where("category")
-      .in(category)
+    const query = {
+        title: { $regex: search, $options: "i" }
+    };
+  
+    if (category) {
+        query.category = {
+            $elemMatch: { $regex: new RegExp(category[0], "i") }
+        };
+    };
+
+    if (year) {
+        query.year = year;
+    };
+
+    const books = await Book.find(query)
       .sort(sortBy)
       .skip((page - 1) * limit)
       .limit(limit);
 
-    const total = await Book.countDocuments({
-      category: { $in: category },
-      title: { $regex: search, $options: "i" },
-    });
+    const total = await Book.countDocuments(query);
 
     res.status(200).json({ error: false, total, page, limit, books });
     
