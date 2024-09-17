@@ -37,8 +37,9 @@ mongoose.connect(process.env.MONGO_URI)
 app.get("/", (req, res) => {
   res.send("Hello from PAW Backend Service!");
 });
-app.use("/user", require("./src/routes/UserRoutes"));
+app.use("/api/user", require("./src/routes/UserRoutes"));
 app.use("/api/books", require("./src/routes/BookRoutes"));
+app.use("/api/branches", require("./src/routes/BranchRoutes"));
 
 // APP START  
 app.listen(5000, () => {
