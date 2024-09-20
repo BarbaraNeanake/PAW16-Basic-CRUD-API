@@ -177,6 +177,7 @@ module.exports = {
   getBooks,
   createBook,
   updateBookCategory,
+  updateBookDescription,
   getBookById,
   deleteBookById
 };
