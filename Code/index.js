@@ -6,7 +6,11 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const process = require("process");
+const pasth = require("path");
+const bcrypt = require("bcrypt");
 const app = express();
+
+app.set("view engine", "ejs");
 
 // DOTENV CONFIG
 dotenv.config();
@@ -25,7 +29,7 @@ app.use(cors());
 if (!process.env.MONGO_URI) {
   throw Error("Database connection string not found");
 }
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Succesfully connected to Database!");
   }).catch((err) => {
@@ -34,11 +38,14 @@ mongoose.connect(process.env.MONGO_URI)
   });
 
 // ROUTES
+app.use("/api/auth", require("./src/routes/auth"));
+app.use("/api/users", require("./src/routes/UserRoutes"));
+
 app.get("/", (req, res) => {
   res.send("Hello from PAW Backend Service!");
 });
-app.use("/api/user", require("./src/routes/UserRoutes"));
-app.use("/api/books", require("./src/routes/BookRoutes"));
+
+app.use("/books", require("./src/routes/BookRoutes"));
 app.use("/api/branches", require("./src/routes/BranchRoutes"));
 
 // APP START  

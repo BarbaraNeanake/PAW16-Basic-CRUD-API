@@ -1,12 +1,13 @@
 .container {
     height: 60px;
-    margin: 10px;
+    margin-bottom: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: var(--box-shadow);
     background-color: white;
     border-radius: 4px;
+    padding: 10px 20px;
 }
 
 .sort_by {
