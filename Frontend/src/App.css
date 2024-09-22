@@ -40,6 +40,9 @@
   flex: 3;
   padding: 20px;
   position: relative;
+  
+  opacity: 0;
+  animation: fadeInUp 1.5s ease-in-out forwards;
 }
 
 .filter_container {
@@ -86,5 +89,16 @@
 
   .table_container, .filter_container {
     padding: 5px;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

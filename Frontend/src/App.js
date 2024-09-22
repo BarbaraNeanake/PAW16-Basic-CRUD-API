@@ -9,9 +9,21 @@ import './App.css';
 
 const base_url = process.env.REACT_APP_API_URL;
 
+const allCategories = [
+  "Manga", 
+  "Technology", 
+  "Non-Fiction", 
+  "Romance", 
+  "Economics", 
+  "Comics",
+  "Comedy",
+  "Religion",
+  "Classic",
+];
+
 function App() {
   const [obj, setObj] = useState({});
-  const [sort, setSort] = useState({ sort: "rating", order: "desc"});
+  const [sort, setSort] = useState({ sort: "rating", order: "desc" });
   const [filterCategory, setFilterCategory] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
@@ -19,11 +31,11 @@ function App() {
   useEffect(() => {
     const getAllBooks = async () => {
       try {
-        const url = `${base_url}?page=${page}&sort=${sort.sort},${sort.order}&category=${filterCategory.toString()}`
+        const url = `${base_url}?page=${page}&sort=${sort.sort},${sort.order}&category=${filterCategory.toString()}&search=${search}`;
         const { data } = await axios.get(url);
         setObj(data);
         console.log(data);
-      } catch(err) {
+      } catch (err) {
         console.log(err);
       }
     };
@@ -50,12 +62,12 @@ function App() {
             />
           </div>
           <div className='filter_container'>
-            <Sort sort={sort} setSort={(sort) => setSort(sort)}/>
-              <Category 
+            <Sort sort={sort} setSort={(sort) => setSort(sort)} />
+            <Category 
               filterCategory={filterCategory} 
-              Category={obj.category ? obj.category: []}
+              category={allCategories}
               setFilterCategory={(category) => setFilterCategory(category)}
-              />
+            />
           </div>
         </div>
       </div>
