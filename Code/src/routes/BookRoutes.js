@@ -14,6 +14,8 @@ router.put('/:id/category', BookControllers.updateBookCategory);
 // Route to update the description of a book by ID 
 router.put('/:id/description', BookControllers.updateBookDescription);
 
+router.put('/:id/price', BookControllers.updateBookPrice);
+
 // Route to get a book by ID
 router.get('/:id', BookControllers.getBookById);
 

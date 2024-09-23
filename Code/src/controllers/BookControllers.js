@@ -129,7 +129,32 @@ const updateBookDescription = async (req, res) => {
   }
 };
 
-//Update 
+//Update the Price of the book by ID 
+const updateBookPrice = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { price } = req.body;
+
+    if (!id || !price) {
+      return res.status(400).json({ success: false, message: 'Book ID and price are required' });
+    }
+
+    const updatedPrice = await Book.findByIdAndUpdate(
+      id,
+      { $set: { price } },
+      { new: true }
+    );
+
+    if (!updatedPrice) {
+      return res.status(404).json({ success: false, message: 'Book not found' });
+    }
+
+    res.status(200).json({ success: true, message: 'Book price updated successfully', book: updatedPrice });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server Error', error });
+  }
+};
 
 // Get a book by ID
 const getBookById = async (req, res) => {
@@ -180,6 +205,7 @@ module.exports = {
   createBook,
   updateBookCategory,
   updateBookDescription,
+  updateBookPrice,
   getBookById,
   deleteBookById
 };
