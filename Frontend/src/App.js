@@ -11,7 +11,7 @@ const base_url = process.env.REACT_APP_API_URL;
 
 const allCategories = [
   "Manga", 
-  "Technology", 
+  "Technology",
   "Non-Fiction", 
   "Romance", 
   "Economics", 
@@ -19,6 +19,8 @@ const allCategories = [
   "Comedy",
   "Religion",
   "Classic",
+  "Horror",
+  "Supernatural",
 ];
 
 function App() {
