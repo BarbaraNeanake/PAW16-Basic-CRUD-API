@@ -1,11 +1,11 @@
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { FaSignOutAlt } from 'react-icons/fa';
-import axios from "axios"; 
-import Search from "./components/Search"; 
-import Table from "./components/Table";
+import axios from 'axios'; 
+import Search from './components/Search'; 
+import Table from './components/Table';
 import Pagination from './components/Pagination';
-import Sort from "./components/Sort";
+import Sort from './components/Sort';
 import Category from './components/Category';
 import LoginPage from './components/Login/LoginPage';
 import RegisterPage from './components/Register/RegisterPage';
@@ -28,11 +28,12 @@ const allCategories = [
 
 function App() {
   const [obj, setObj] = useState({});
-  const [sort, setSort] = useState({ sort: "rating", order: "desc" });
+  const [sort, setSort] = useState({ sort: 'rating', order: 'desc' });
   const [filterCategory, setFilterCategory] = useState([]);
   const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -46,12 +47,16 @@ function App() {
   useEffect(() => {
     const getAllBooks = async () => {
       if (!isAuthenticated) return;
+
+      setLoading(true);
       try {
         const url = `${base_url}?page=${page}&sort=${sort.sort},${sort.order}&category=${filterCategory.toString()}&search=${search}`;
         const { data } = await axios.get(url);
         setObj(data);
       } catch (err) {
-        console.log(err);
+        console.error(err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -68,44 +73,57 @@ function App() {
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('token');
     localStorage.removeItem('email'); 
-    navigate("/");
+    navigate('/');
   };
 
-
   return (
-    <div className='wrapper'>
+    <div className="wrapper">
+      {loading && (
+        <div className="loader-wrapper">
+          <span className="loader"><span className="loader-inner"></span></span>
+        </div>
+      )}
       <Routes>
         <Route path="/" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/app" element={
-          <div className='container'>
-            <div className='head'>
-              <img src='./images/logo.png' alt='logo' className='logo' />
-              <div className='search-logout-container'>
-                <Search setSearch={(search) => setSearch(search)} />
+          <div className="container">
+            <div className="head">
+              <img src="./images/logo.png" alt="logo" className="logo" />
+              <div className="search-logout-container">
+                <Search setSearch={(search) => {
+                  setSearch(search);
+                  setPage(1);
+                }} />
                 <button onClick={handleLogout} className="logout-button">
                   <FaSignOutAlt />
                 </button>
               </div>
             </div>
-            <div className='body'>
+            <div className="body">
               {isAuthenticated ? (
                 <>
-                  <div className='table_container'>
+                  <div className="table_container">
                     <Table books={obj.books ? obj.books : []} />
                     <Pagination
                       page={page}
                       limit={obj.limit ? obj.limit : 0}
                       total={obj.total ? obj.total : 0}
-                      setPage={(page) => setPage(page)}
+                      setPage={(newPage) => setPage(newPage)}
                     />
                   </div>
-                  <div className='filter_container'>
-                    <Sort sort={sort} setSort={(sort) => setSort(sort)} />
+                  <div className="filter_container">
+                    <Sort sort={sort} setSort={(newSort) => {
+                      setSort(newSort);
+                      setPage(1);
+                    }} />
                     <Category 
                       filterCategory={filterCategory} 
                       category={allCategories}
-                      setFilterCategory={(category) => setFilterCategory(category)}
+                      setFilterCategory={(newCategory) => {
+                        setFilterCategory(newCategory);
+                        setPage(1);
+                      }} 
                     />
                   </div>
                 </>

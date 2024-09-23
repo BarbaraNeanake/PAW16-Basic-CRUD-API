@@ -7,6 +7,7 @@ const Login = ({ onLoginSuccess }) => {
 	const [data, setData] = useState({ email: "", password: "" });
 	const [rememberMe, setRememberMe] = useState(false);
 	const [error, setError] = useState("");
+	const [loading, setLoading] = useState(false); 
 	const navigate = useNavigate();
 
 	const handleChange = ({ currentTarget: input }) => {
@@ -19,6 +20,7 @@ const Login = ({ onLoginSuccess }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setLoading(true); 
 		try {
 			const url = "http://localhost:5000/api/auth";
 			const { data: res } = await axios.post(url, data);
@@ -34,11 +36,18 @@ const Login = ({ onLoginSuccess }) => {
 			if (error.response && error.response.status >= 400 && error.response.status <= 500) {
 				setError(error.response.data.message);
 			}
+		} finally {
+			setLoading(false); 
 		}
 	};
 
 	return (
 		<div className={styles.login_container}>
+			{loading && (
+				<div className="loader-wrapper">
+					<span className="loader"><span className="loader-inner"></span></span>
+				</div>
+			)}
 			<div className={styles.login_form_container}>
 				<div className={styles.left}>
 					<form className={styles.form_container} onSubmit={handleSubmit}>

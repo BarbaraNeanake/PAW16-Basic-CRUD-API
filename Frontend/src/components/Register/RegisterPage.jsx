@@ -11,6 +11,7 @@ const Signup = () => {
 		password: "",
 	});
 	const [error, setError] = useState("");
+	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 
 	const handleChange = ({ currentTarget: input }) => {
@@ -19,10 +20,11 @@ const Signup = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setLoading(true);
 		try {
 			const url = "http://localhost:5000/api/users";
 			const { data: res } = await axios.post(url, data);
-			navigate("/");
+			navigate("/"); 
 			console.log(res.message);
 		} catch (error) {
 			if (
@@ -32,11 +34,18 @@ const Signup = () => {
 			) {
 				setError(error.response.data.message);
 			}
+		} finally {
+			setLoading(false);
 		}
 	};
 
 	return (
 		<div className={styles.signup_container}>
+			{loading && (
+				<div className="loader-wrapper">
+					<span className="loader"><span className="loader-inner"></span></span>
+				</div>
+			)}
 			<div className={styles.signup_form_container}>
 				<div className={styles.left}>
 					<h1>Welcome Back</h1>
