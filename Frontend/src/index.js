@@ -6,6 +6,6 @@ import AddBook from './AddBook'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <AddBook />
   </React.StrictMode>
 );

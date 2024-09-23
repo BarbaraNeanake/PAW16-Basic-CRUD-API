@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
-import './App.css';
+import './addbook.css';
+
+const base_url = process.env.REACT_APP_API_URL;
 
 function AddBook() {
   // State untuk menyimpan input dari form
@@ -10,32 +12,34 @@ function AddBook() {
   const [year, setYear] = useState('');
   const [price, setPrice] = useState('');
   const [isbn, setIsbn] = useState('');
-  const [image, setImage] = useState(null);  // Image upload
+  const [image, setImage] = useState('');  // Image URL
   const [description, setDescription] = useState('');
 
   // Fungsi untuk menangani pengiriman form
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Buat formData untuk menampung data termasuk file gambar
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('authors', authors);
-    formData.append('categories', categories);
-    formData.append('year', year);
-    formData.append('price', price);
-    formData.append('isbn', isbn);
-    formData.append('image', image);  // Upload file image
-    formData.append('description', description);
+
+    const bookData = {
+      title,
+      authors,
+      categories,
+      year,
+      price,
+      isbn,
+      image,  // Use URL for image
+      description,
+    };
 
     try {
-      const response = await axios.post('/api/books', formData, {
+      const response = await axios.post(`${base_url}`, bookData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json'
         },
       });
+      
       alert('Book created successfully!');
       console.log(response.data);
+
       // Reset form setelah berhasil submit
       setTitle('');
       setAuthors('');
@@ -43,8 +47,9 @@ function AddBook() {
       setYear('');
       setPrice('');
       setIsbn('');
-      setImage(null);
+      setImage('');  // Reset image URL
       setDescription('');
+
     } catch (error) {
       console.error('Error creating book:', error);
       alert('Failed to create book.');
@@ -52,36 +57,38 @@ function AddBook() {
   };
 
   return (
-    <div className="wrapper">
-      <div className="container">
-        <h2>Add Your Book</h2>
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-          <label>Title:</label>
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-          
-          <label>Authors (comma-separated):</label>
-          <input type="text" value={authors} onChange={(e) => setAuthors(e.target.value)} required />
-          
-          <label>Categories (comma-separated):</label>
-          <input type="text" value={categories} onChange={(e) => setCategories(e.target.value)} required />
-          
-          <label>Year:</label>
-          <input type="number" value={year} onChange={(e) => setYear(e.target.value)} required />
-          
-          <label>Price:</label>
-          <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} required />
-          
-          <label>ISBN:</label>
-          <input type="text" value={isbn} onChange={(e) => setIsbn(e.target.value)} required />
-          
-          <label>Cover Image:</label>
-          <input type="file" onChange={(e) => setImage(e.target.files[0])} required />
-          
-          <label>Description:</label>
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
-          
-          <button type="submit">Upload Your Book</button>
-        </form>
+    <div className="main-container">
+      <div className="wrapper">
+        <div className="container">
+          <h2>Add Your Book</h2>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="title">Title:</label>
+            <input id="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+            
+            <label htmlFor="authors">Authors (comma-separated):</label>
+            <input id="authors" type="text" value={authors} onChange={(e) => setAuthors(e.target.value)} required />
+            
+            <label htmlFor="categories">Categories (comma-separated):</label>
+            <input id="categories" type="text" value={categories} onChange={(e) => setCategories(e.target.value)} required />
+            
+            <label htmlFor="year">Year:</label>
+            <input id="year" type="number" value={year} onChange={(e) => setYear(e.target.value)} required />
+            
+            <label htmlFor="price">Price:</label>
+            <input id="price" type="number" value={price} onChange={(e) => setPrice(e.target.value)} required />
+            
+            <label htmlFor="isbn">ISBN:</label>
+            <input id="isbn" type="text" value={isbn} onChange={(e) => setIsbn(e.target.value)} required />
+            
+            <label htmlFor="image">Cover Image URL:</label>
+            <input id="image" type="text" value={image} onChange={(e) => setImage(e.target.value)} required />
+            
+            <label htmlFor="description">Description:</label>
+            <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} required></textarea>
+            
+            <button type="submit">Upload Your Book</button>
+          </form>
+        </div>
       </div>
     </div>
   );
