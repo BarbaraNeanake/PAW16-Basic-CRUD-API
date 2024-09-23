@@ -1,5 +1,5 @@
 {
-  "name": "paw-backend-test",
+  "name": "paw_16",
   "version": "1.0.0",
   "description": "simple demo to CRUD app",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "author": "aufarhmn",
+  "author": "paw16",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.1.4"
@@ -17,9 +17,9 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.20.0",
+    "express": "^4.21.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.6.1",
+    "mongoose": "^8.6.2",
     "morgan": "^1.10.0"
   }
 }

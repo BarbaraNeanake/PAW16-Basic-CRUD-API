@@ -1,0 +1,127 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.heading {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: var(--box-shadow);
+    margin: 10px;
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    margin: 10px;
+    box-shadow: var(--box-shadow);
+    border-radius: 4px;
+    background-color: white;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.books_img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.card_content {
+    padding: 10px;
+    text-align: center;
+}
+
+.books_title {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 5px 0;
+}
+
+.category_container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.books_category {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 2px;
+}
+
+.price_container {
+    margin-top: 10px;
+}
+
+.books_price {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+@media (max-width: 960px) {
+    .heading {
+        height: 50px;
+        font-size: 16px;
+    }
+
+    .books_title,
+    .books_price {
+        font-size: 14px;
+    }
+
+    .books_category {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 860px) {
+    .heading {
+        height: 45px;
+        font-size: 14px;
+    }
+
+    .books_title,
+    .books_price {
+        font-size: 12px;
+    }
+
+    .books_category {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .heading {
+        height: 40px;
+        font-size: 10px;
+    }
+
+    .books_title,
+    .books_price {
+        font-size: 10px;
+    }
+
+    .books_category {
+        font-size: 10px;
+    }
+}
