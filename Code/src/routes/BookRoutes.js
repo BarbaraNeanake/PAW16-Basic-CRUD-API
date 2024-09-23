@@ -5,6 +5,9 @@ const BookControllers = require('../controllers/BookControllers');
 // Route to get books with filtering, sorting, pagination
 router.get('/', BookControllers.getBooks);
 
+// Route to get all books without filtering
+router.get('/all-books', BookControllers.getAllBooks);
+
 // Route to create a new book
 router.post('/', BookControllers.createBook);
 

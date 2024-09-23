@@ -1,0 +1,179 @@
+.head {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    background-color: black;
+    justify-content: flex-start;
+    padding: 0 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+  }
+  
+  .logo {
+    width: 50px;
+    object-fit: contain;
+    margin-left: 30px;
+    margin-right: 50px; 
+  }
+  
+  .logoNavContainer {
+    display: flex;
+    margin-left: 50px;
+    align-items: center; 
+  }
+  
+  .navLinks {
+    display: flex;
+    gap: 100px;
+    align-items: center; 
+    margin-left: 50px; 
+  }
+  
+  .navLink {
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .navLink:hover {
+    color: #0056b3;
+  }
+  
+  .searchLogoutContainer {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 70px;
+  }
+  
+  .logoutButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .logoutButton:hover {
+    background-color: #d32f2f;
+  }
+  
+  .deleteBookPage {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .bookList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .bookItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 220px;
+    margin: 10px;
+    box-shadow: var(--box-shadow);
+    border-radius: 8px;
+    background-color: white;
+    padding: 15px;
+    transition: transform 0.2s;
+  }
+  
+  .bookItem:hover {
+    transform: scale(1.05);
+  }
+  
+  .bookImage {
+    width: 100%;
+    height: 250px; 
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .bookInfo {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .deleteButton {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .deleteButton:hover {
+    background-color: darkred;
+    transform: scale(1.05);
+  }
+  
+  .backButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .loader-wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .loader {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    border: 4px solid #fff;
+    animation: loader 2s infinite ease;
+  }
+  
+  .loader-inner {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: block;
+    transform: scale(0);
+    animation: loader-inner 1.5s infinite ease-in;
+  }
+
+  @keyframes loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes loader-inner {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }

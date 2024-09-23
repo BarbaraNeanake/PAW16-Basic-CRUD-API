@@ -5,10 +5,11 @@
     align-items: center;
     justify-content: center;
     position: fixed; 
-    bottom: 0; 
+    bottom: 50px; 
     left: 0; 
     right: 0; 
     z-index: 1; 
+    gap: 15px;
 }
 
 .page_btn {

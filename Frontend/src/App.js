@@ -12,6 +12,7 @@ import RegisterPage from './components/Register/RegisterPage';
 import Footer from './components/Footer';
 import HeroSection from './components/HeroSection';
 import Card from './components/CardHero';
+import DeleteBookPage from './components/DeleteBookPage';
 import './App.css';
 
 const base_url = "http://localhost:5000/books";
@@ -121,6 +122,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/delete-book" element={<DeleteBookPage />} />
         <Route path="/app" element={
           isAuthenticated ? (
             <div className="container">

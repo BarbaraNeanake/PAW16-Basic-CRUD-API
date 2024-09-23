@@ -102,6 +102,16 @@ const updateBookCategory = async (req, res) => {
   }
 };
 
+// Get all books without filtering
+const getAllBooks = async (req, res) => {
+  try {
+    const books = await Book.find(); // Retrieve all books without filtering
+    res.status(200).json({ error: false, books });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server Error', error });
+  }
+};
+
 // Get a book by ID
 const getBookById = async (req, res) => {
   try {
@@ -151,5 +161,6 @@ module.exports = {
   createBook,
   updateBookCategory,
   getBookById,
-  deleteBookById
+  deleteBookById,
+  getAllBooks
 };
