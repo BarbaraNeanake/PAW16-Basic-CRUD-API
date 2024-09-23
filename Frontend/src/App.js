@@ -18,7 +18,7 @@ const base_url = "http://localhost:5000/books";
 
 const allCategories = [
   "Manga", 
-  "Technology", 
+  "Technology",
   "Non-Fiction", 
   "Romance", 
   "Economics", 
@@ -26,6 +26,12 @@ const allCategories = [
   "Comedy",
   "Religion",
   "Classic",
+  "Horror",
+  "Supernatural",
+  "Superhero",
+  "Science",
+  "Adventure",
+  "Drama",
 ];
 
 function App() {
