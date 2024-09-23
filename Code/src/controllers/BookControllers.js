@@ -102,6 +102,87 @@ const updateBookCategory = async (req, res) => {
   }
 };
 
+//Update the description of the book by ID 
+const updateBookDescription = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { description } = req.body;
+
+    if (!id || !description) {
+      return res.status(400).json({ success: false, message: 'Book ID and description are required' });
+    }
+
+    const updatedBookDes = await Book.findByIdAndUpdate(
+      id,
+      { $set: { description } },
+      { new: true }
+    );
+
+    if (!updatedBookDes) {
+      return res.status(404).json({ success: false, message: 'Book not found' });
+    }
+
+    res.status(200).json({ success: true, message: 'Book description updated successfully', book: updatedBookDes });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server Error', error });
+  }
+};
+
+//Update the Price of the book by ID 
+const updateBookPrice = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { price } = req.body;
+
+    if (!id || !price) {
+      return res.status(400).json({ success: false, message: 'Book ID and price are required' });
+    }
+
+    const updatedPrice = await Book.findByIdAndUpdate(
+      id,
+      { $set: { price } },
+      { new: true }
+    );
+
+    if (!updatedPrice) {
+      return res.status(404).json({ success: false, message: 'Book not found' });
+    }
+
+    res.status(200).json({ success: true, message: 'Book price updated successfully', book: updatedPrice });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server Error', error });
+  }
+}; 
+
+//Update Image of the Book 
+const updateBookImage = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { image } = req.body;
+
+    if (!id || ! image) {
+      return res.status(400).json({ success: false, message: 'Book ID and image are required' });
+    }
+
+    const updatedImage = await Book.findByIdAndUpdate(
+      id,
+      { $set: { image } },
+      { new: true }
+    );
+
+    if (!updatedImage) {
+      return res.status(404).json({ success: false, message: 'Book not found' });
+    }
+
+    res.status(200).json({ success: true, message: 'Book image updated successfully', book: updatedImage });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server Error', error });
+  }
+}; 
+
 // Get a book by ID
 const getBookById = async (req, res) => {
   try {
@@ -150,6 +231,9 @@ module.exports = {
   getBooks,
   createBook,
   updateBookCategory,
+  updateBookDescription,
+  updateBookPrice,
+  updateBookImage,
   getBookById,
   deleteBookById
 };
