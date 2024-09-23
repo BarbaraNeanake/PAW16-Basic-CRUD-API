@@ -21,6 +21,10 @@ const allCategories = [
   "Classic",
   "Horror",
   "Supernatural",
+  "Superhero",
+  "Science",
+  "Adventure",
+  "Drama",
 ];
 
 function App() {
