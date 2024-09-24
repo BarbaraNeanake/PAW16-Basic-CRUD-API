@@ -1,5 +1,8 @@
 # 📚 Bookstore API - PAW Group 16
 
+
+<img src="https://github.com/BarbaraNeanake/PAW16-Basic-CRUD-API/blob/494495/YEY.png" width="800"/>
+
 **Anggota Kelompok 16:**
 - 👤 **22/503935/TK/55096** Josua Adhi Candra Nugroho
 - 👤 **22/494733/TK/54301** Muhammad Aqiil Fauzaan
@@ -76,30 +79,42 @@ git clone https://github.com/BarbaraNeanake/PAW16-Basic-CRUD-API.git
 ```
 
 ### 2. Install Dependencies
-Setelah cloning, navigasikan ke direktori project dan install dependencies dengan menjalankan perintah berikut (di terminal code ataupun frontend):
+Setelah cloning, navigasikan ke direktori project **Code** dan **Frontend**, kemudian install dependencies dengan menjalankan perintah berikut (untuk keduanya):
 
 ```bash
 npm install
 ```
 
 ### 3. Setup Environment Variables
-Buat file `.env` di dalam root directory project Code dengan konfigurasi seperti berikut:
+#### Backend (Code)
+Buat file `.env` di dalam root directory project **Code** dengan konfigurasi seperti berikut:
 
 ```
-MONGO_URI="<your-mongodb-uri>"
-JWTPRIVATEKEY="<your-jwt-private-key>"
-SALT=<your-salt-value>
+MONGO_URI="mongodb+srv://PAW16:xRljvFanxLe8zYnl@paw16db.qg8h8.mongodb.net/Book_Store?retryWrites=true&w=majority&appName=PAW16DB"
+JWTPRIVATEKEY="3c3b6a17fa78e5cd8f6347f748e2f8b60b840167ff0ec8d50dc36cf582957e634e5fddf4e29994f845a3de7c5630de4d79c5463e739480ea55b464f2a649f1a3"
+SALT=10
+```
 
+#### Frontend
+Buat file `.env` di dalam root directory project **Frontend** dengan konfigurasi berikut:
+
+```
+REACT_APP_API_URL=http://localhost:5000
 ```
 
 ### 4. Jalankan Aplikasi
-Untuk memulai aplikasi, jalankan perintah berikut di terminal:
+Untuk memulai aplikasi backend dan frontend, jalankan perintah berikut di terminal:
 
+#### Backend (Code):
+```bash
+npm start
+```
+#### Frontend:
 ```bash
 npm start
 ```
 
-Aplikasi ini akan berjalan di `http://localhost:3000` secara default.
+Aplikasi ini akan berjalan di `http://localhost:3000` secara default untuk frontend dan backend di `http://localhost:5000`.
 
 ---
 
@@ -131,6 +146,13 @@ PAW16-Basic-CRUD-API/
 ├── README.md               
 
 ```
+
+---
+## 📄 Dokumentasi dan Video Demo
+
+Untuk dokumentasi proyek dan video demo CRUD, silakan kunjungi link [bit.ly/PAW_16](bit.ly/PAW_16) atau click:
+
+[![PAW16 Dokumentasi](https://img.shields.io/badge/Documentation-PAW_16-blue)](https://bit.ly/PAW_16)
 
 ---
 

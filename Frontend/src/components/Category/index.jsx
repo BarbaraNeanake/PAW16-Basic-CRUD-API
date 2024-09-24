@@ -13,7 +13,7 @@ const Category = ({ category = [], filterCategory, setFilterCategory}) => {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.heading}>Filter By Category</h1>
+            <h1 className={styles.heading}>Choose One Category</h1>
             <div className={styles.category_container}>
                 {category.map((category) => (
                     <div key={category} className={styles.category}>
