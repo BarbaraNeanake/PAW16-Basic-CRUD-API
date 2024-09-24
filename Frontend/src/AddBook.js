@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import './addbook.css';
 
-const base_url = process.env.REACT_APP_API_URL;
+const post_url = "http://localhost:5000/books";
 
 function AddBook() {
   // State untuk menyimpan input dari form
@@ -31,7 +31,7 @@ function AddBook() {
     };
 
     try {
-      const response = await axios.post(`${base_url}`, bookData, {
+      const response = await axios.post(`${post_url}`, bookData, {
         headers: {
           'Content-Type': 'application/json'
         },
@@ -57,9 +57,9 @@ function AddBook() {
   };
 
   return (
-    <div className="main-container">
-      <div className="wrapper">
-        <div className="container">
+    <div className="main-bungkus">
+      <div className="plastik">
+        <div className="bungkus">
           <h2>Add Your Book</h2>
           <form onSubmit={handleSubmit}>
             <label htmlFor="title">Title:</label>
