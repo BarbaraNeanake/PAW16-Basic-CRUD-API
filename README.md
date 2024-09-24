@@ -9,22 +9,24 @@
 
 ---
 
+
 ## 📖 Deskripsi Proyek
 
-Proyek ini adalah **API CRUD** yang dibuat untuk **Bookstore** sebagai tugas dari mata kuliah **Pengembangan Aplikasi dan Web (PAW)**. API ini memungkinkan pengguna untuk melakukan operasi **Create**, **Read**, **Update**, dan **Delete** (CRUD) pada data buku-buku yang tersedia di toko buku kami.
+Proyek ini adalah **API CRUD** yang dibuat untuk **Bookstore** sebagai tugas dari mata kuliah **Pengembangan Aplikasi dan Web (PAW)**. API ini memungkinkan pengguna untuk melakukan operasi **Create**, **Read**, **Update**, dan **Delete** (CRUD) pada data buku-buku yang ada pada database kami. Proyek ini juga didukung dengan adanya fitur login dan register untuk authentikasinya.
 
-✨ Proyek ini menggunakan **MongoDB** sebagai database penyimpanan data dan **Express.js** sebagai backend API. Beberapa fitur tambahan seperti **sorting** dan **filtering** juga diimplementasikan untuk memberikan pengalaman pengguna yang lebih baik dalam pencarian buku.
+✨ Proyek ini menggunakan **MongoDB** sebagai database penyimpanan data dan **Express.js** sebagai backend API. Beberapa fitur tambahan seperti **sorting**, **filtering**, **pagination** juga diimplementasikan untuk pengalaman pengguna yang lebih baik dalam pencarian buku.
 
 ---
 
 ## 🎯 Fitur Utama
 
-- 📋 **CRUD API**: Operasi Create, Read, Update, Delete untuk data buku.
-- 🔍 **Sorting & Filtering**: Fitur filter dan sorting buku berdasarkan judul, pengarang, dan harga.
-- 💾 **MongoDB**: Database untuk penyimpanan data buku.
-- ⚙️ **Express.js**: Backend framework untuk API.
-- 🔐 **Keamanan JWT**: Token autentikasi untuk pengguna.
-- 💡 **Git Workflow yang Baik**: Commit message yang jelas, penggunaan branch, dan PR untuk merge yang baik.
+- **CRUD API**: Operasi Create, Read, Update, Delete untuk data buku.
+- **Sorting**: Fitur sorting buku berdasarkan harga dan tahun terbit.
+- **Filtering**: Fitur filtering buku berdasarkan kategori yang tersedia.
+- **SearchBar** : Fitur searching buku berdasarkan judul buku yang tersedia.
+- **MongoDB**: Database untuk penyimpanan data buku.
+- **Express.js**: Backend framework untuk API.
+- **Keamanan JWT**: Token autentikasi untuk pengguna.
 
 ---
 
@@ -32,18 +34,20 @@ Proyek ini adalah **API CRUD** yang dibuat untuk **Bookstore** sebagai tugas dar
 
 Berikut adalah atribut yang digunakan dalam koleksi books di MongoDB untuk Bookstore API:
 
-1. `_id` (ObjectID): ID unik yang dihasilkan secara otomatis oleh MongoDB.
-2. `title` (String): Judul buku.
-3. `author` (String): Penulis buku.
-4. `genre` (String): Genre buku.
-5. `price` (Number): Harga buku.
-6. `stock` (Number): Jumlah stok buku yang tersedia.
-7. `publishedYear` (Number): Tahun publikasi buku.
+1. **_id** (ObjectID): ID unik yang dihasilkan secara otomatis oleh MongoDB.
+2. **title** (String): Judul buku.
+3. **author** (Array): Penulis buku.
+4. **category** (Array): Category buku.
+5. **price** (Double): Harga buku.
+6. **year** (Int): Tahun publikasi buku.
+7. **publishedDate** (Number): Tanggal publikasi buku.
+8. **image** (String) : Sampul dari masing-masing buku.
+9. **description** (String) : Deskripsi dari masing-masing buku.
 
 ---
 
 ## 📚 Frontend Bookstore
-Kami juga telah mengembangkan frontend yang nyaman dan responsif untuk aplikasi Bookstore, sehingga pengguna dapat melakukan CRUD dengan *interface* yang mudah digunakan.
+Kami juga telah mengembangkan frontend yang nyaman untuk aplikasi Bookstore, sehingga pengguna dapat melakukan CRUD dengan *interface* yang mudah digunakan.
 
 #### 🔑 Login Page
 <img src="https://github.com/BarbaraNeanake/PAW16-Basic-CRUD-API/blob/main/loginpage.png" alt="Login Page" width="600"/>
