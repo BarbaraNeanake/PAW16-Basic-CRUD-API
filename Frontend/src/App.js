@@ -165,7 +165,7 @@ function App() {
                   title="Insert Book" 
                   description="Add a new book to our collection." 
                   imageUrl="/images/insert-book.jpg" 
-                  onClick={() => alert('Card clicked!')}
+                  onClick={handleInsertBook}
                 />
               </div>
               <div className="body" ref={bottomSectionRef}>
