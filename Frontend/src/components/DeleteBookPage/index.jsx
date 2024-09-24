@@ -111,7 +111,7 @@ function DeleteBookPage() {
                     <img src={book.image} alt={book.title} className={styles.bookImage} />
                     <div className={styles.bookInfo}>
                       <h3>{book.title}</h3>
-                      <p>Author: {book.authors ? book.authors.join(', ') : 'Unknown Author'}</p>
+                      <p>Author: {book.author ? book.author.join(', ') : 'Unknown Author'}</p>
                       <p>Price: ${book.price}</p>
                     </div>
                     <button
