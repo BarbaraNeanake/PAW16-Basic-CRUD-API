@@ -50,6 +50,16 @@ const getBooks = async (req, res) => {
   }
 };
 
+// Get all books without filtering
+const getAllBooks = async (req, res) => {
+  try {
+    const books = await Book.find(); // Retrieve all books without filtering
+    res.status(200).json({ error: false, books });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server Error', error });
+  }
+};
+
 // Create a new book
 const createBook = async (req, res) => {
   try {
@@ -75,6 +85,33 @@ const createBook = async (req, res) => {
   }
 };
 
+//Update the description of the book by ID 
+const updateBookDescription = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { description } = req.body;
+
+    if (!id || !description) {
+      return res.status(400).json({ success: false, message: 'Book ID and description are required' });
+    }
+
+    const updatedBookDes = await Book.findByIdAndUpdate(
+      id,
+      { $set: { description } },
+      { new: true }
+    );
+
+    if (!updatedBookDes) {
+      return res.status(404).json({ success: false, message: 'Book not found' });
+    }
+
+    res.status(200).json({ success: true, message: 'Book description updated successfully', book: updatedBookDes });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server Error', error });
+  }
+};
+
 // Update the category of a book by ID
 const updateBookCategory = async (req, res) => {
   try {
@@ -97,16 +134,6 @@ const updateBookCategory = async (req, res) => {
 
     res.status(200).json({ success: true, message: 'Book category updated successfully', book: updatedBook });
 
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Server Error', error });
-  }
-};
-
-// Get all books without filtering
-const getAllBooks = async (req, res) => {
-  try {
-    const books = await Book.find(); // Retrieve all books without filtering
-    res.status(200).json({ error: false, books });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Server Error', error });
   }
@@ -160,6 +187,9 @@ module.exports = {
   getBooks,
   createBook,
   updateBookCategory,
+  updateBookDescription,
+  updateBookPrice,
+  updateBookImage,
   getBookById,
   deleteBookById,
   getAllBooks

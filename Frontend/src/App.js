@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import HeroSection from './components/HeroSection';
 import Card from './components/CardHero';
 import DeleteBookPage from './components/DeleteBookPage';
+import AddBook from './AddBook';
 import './App.css';
 
 const base_url = "http://localhost:5000/books";
@@ -198,6 +199,7 @@ function App() {
             <LoginPage onLoginSuccess={handleLoginSuccess} />
           )
         } />
+        <Route path="/insert-book" element={<AddBook />} />
       </Routes>
     </div>
   );
