@@ -86,9 +86,10 @@ npm install
 Buat file `.env` di dalam root directory project Code dengan konfigurasi seperti berikut:
 
 ```
-MONGO_URI=mongodb+srv://PAW16:xRljvFanxLe8zYnl@paw16db.qg8h8.mongodb.net/Book_Store?retryWrites=true&w=majority&appName=PAW16DB
-JWTPRIVATEKEY="3c3b6a17fa78e5cd8f6347f748e2f8b60b840167ff0ec8d50dc36cf582957e634e5fddf4e29994f845a3de7c5630de4d79c5463e739480ea55b464f2a649f1a3"
-SALT=10
+MONGO_URI="<your-mongodb-uri>"
+JWTPRIVATEKEY="<your-jwt-private-key>"
+SALT=<your-salt-value>
+
 ```
 
 ### 4. Jalankan Aplikasi
