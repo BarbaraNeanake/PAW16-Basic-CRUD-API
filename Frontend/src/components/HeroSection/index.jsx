@@ -6,7 +6,7 @@ const HeroSection = ({ scrollToMiddle }) => {
       <div className={styles.hero} style={{ backgroundImage: `url(/images/library.jpg)` }}>
         <div className={styles.heroContent}>
           <h1>Welcome to Our Bookstore</h1>
-          <p>Discover the best books and authors.</p>
+          <p>Discover the best books and authors. By PAW Group 16.</p>
           <button className={styles.hero_btn} onClick={scrollToMiddle}>
             Get Started
           </button>

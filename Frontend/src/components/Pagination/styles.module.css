@@ -26,6 +26,7 @@
     margin: 0 5px; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    color: #bbb;
     background-color: white;
     transition: background-color 0.3s, transform 0.2s;
 }
@@ -33,6 +34,7 @@
 .page_btn:hover {
     background-color: var(--light-blue);
     transform: translateY(-2px);
+    color: black;
 }
 
 .active {
@@ -53,7 +55,7 @@
     font-size: 14px;
     font-weight: 500;
     border-radius: 8px;
-    width: 70px;
+    width: 90px;
     height: 45px;
     display: flex;
     align-items: center;
@@ -62,12 +64,14 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     background-color: var(--gray);
+    color: #bbb;
     transition: background-color 0.3s, transform 0.2s;
 }
 
 .prev_btn:hover, .next_btn:hover {
     background-color: var(--light-gray);
     transform: translateY(-2px);
+    color: black;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 

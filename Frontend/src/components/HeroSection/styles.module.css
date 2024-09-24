@@ -36,6 +36,13 @@
     margin-bottom: 60px;
     text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
   }
+
+  .hero h2 {
+    font-size: 2rem; 
+    margin-top: 10px; 
+    margin-bottom: 30px; 
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
+  }
   
   .hero_btn {
     background-color: black;
